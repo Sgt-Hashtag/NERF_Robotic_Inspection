@@ -1,0 +1,466 @@
+#VRML_SIM R2025a utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the Ur5e
+# Extracted from: /home/ekart/viethenn_ws/src/src/ur5e_simulation/urdf/ur5e.urdf
+
+PROTO Ur5e [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "Ur5e"  # Is `Robot.name`.
+  field  SFString    controller      "void"  # Is `Robot.controller`.
+  field  MFString    controllerArgs  []      # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""      # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE   # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE    # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE   # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Solid {
+        rotation 0.000000 0.000000 1.000000 3.141593
+        children [
+          Pose {
+            rotation 0.000000 0.000000 1.000000 3.141593
+            children [
+              DEF base_visual CadShape {
+                url "../meshes/ur5e/visual/base.dae"
+              }
+            ]
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0.000000 0.000000 1.000000
+              anchor 0.000000 0.000000 0.162500
+            }
+            device [
+              RotationalMotor {
+                name "shoulder_pan_joint"
+                maxVelocity 3.141592653589793
+                minPosition -6.283185307179586
+                maxPosition 6.283185307179586
+                maxTorque 150.0
+              }
+              PositionSensor {
+                name "shoulder_pan_joint_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0.000000 0.000000 0.162500
+              children [
+                Pose {
+                  rotation 0.000000 0.000000 1.000000 3.141593
+                  children [
+                    DEF shoulder_visual CadShape {
+                      url "../meshes/ur5e/visual/shoulder.dae"
+                    }
+                  ]
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0.000000 -1.000000 -0.000000
+                  }
+                  device [
+                    RotationalMotor {
+                      name "shoulder_lift_joint"
+                      maxVelocity 3.141592653589793
+                      minPosition -6.283185307179586
+                      maxPosition 6.283185307179586
+                      maxTorque 150.0
+                    }
+                    PositionSensor {
+                      name "shoulder_lift_joint_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    rotation 1.000000 0.000000 0.000000 1.570796
+                    children [
+                      Pose {
+                        translation 0.000000 0.000000 0.138000
+                        rotation 0.577350 -0.577350 -0.577350 2.094395
+                        children [
+                          DEF upperarm_visual CadShape {
+                            url "../meshes/ur5e/visual/upperarm.dae"
+                          }
+                        ]
+                      }
+                      HingeJoint {
+                        jointParameters HingeJointParameters {
+                          axis 0.000000 0.000000 1.000000
+                          anchor -0.425000 0.000000 0.000000
+                        }
+                        device [
+                          RotationalMotor {
+                            name "elbow_joint"
+                            maxVelocity 3.141592653589793
+                            minPosition -3.141592653589793
+                            maxPosition 3.141592653589793
+                            maxTorque 150.0
+                          }
+                          PositionSensor {
+                            name "elbow_joint_sensor"
+                          }
+                        ]
+                        endPoint Solid {
+                          translation -0.425000 0.000000 0.000000
+                          children [
+                            Pose {
+                              translation 0.000000 0.000000 0.007000
+                              rotation 0.577350 -0.577350 -0.577350 2.094395
+                              children [
+                                DEF forearm_visual CadShape {
+                                  url "../meshes/ur5e/visual/forearm.dae"
+                                }
+                              ]
+                            }
+                            HingeJoint {
+                              jointParameters HingeJointParameters {
+                                axis 0.000000 0.000000 1.000000
+                                anchor -0.392200 0.000000 0.133300
+                              }
+                              device [
+                                RotationalMotor {
+                                  name "wrist_1_joint"
+                                  maxVelocity 3.141592653589793
+                                  minPosition -6.283185307179586
+                                  maxPosition 6.283185307179586
+                                  maxTorque 28.0
+                                }
+                                PositionSensor {
+                                  name "wrist_1_joint_sensor"
+                                }
+                              ]
+                              endPoint Solid {
+                                translation -0.392200 0.000000 0.133300
+                                children [
+                                  Pose {
+                                    translation 0.000000 0.000000 -0.127000
+                                    rotation 1.000000 0.000000 0.000000 1.570796
+                                    children [
+                                      DEF wrist1_visual CadShape {
+                                        url "../meshes/ur5e/visual/wrist1.dae"
+                                      }
+                                    ]
+                                  }
+                                  HingeJoint {
+                                    jointParameters HingeJointParameters {
+                                      axis 0.000000 -1.000000 -0.000000
+                                      anchor 0.000000 -0.099700 -0.000000
+                                    }
+                                    device [
+                                      RotationalMotor {
+                                        name "wrist_2_joint"
+                                        maxVelocity 3.141592653589793
+                                        minPosition -6.283185307179586
+                                        maxPosition 6.283185307179586
+                                        maxTorque 28.0
+                                      }
+                                      PositionSensor {
+                                        name "wrist_2_joint_sensor"
+                                      }
+                                    ]
+                                    endPoint Solid {
+                                      translation 0.000000 -0.099700 -0.000000
+                                      rotation 1.000000 0.000000 0.000000 1.570796
+                                      children [
+                                        Pose {
+                                          translation 0.000000 0.000000 -0.099700
+                                          children [
+                                            DEF wrist2_visual CadShape {
+                                              url "../meshes/ur5e/visual/wrist2.dae"
+                                            }
+                                          ]
+                                        }
+                                        HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                            axis 0.000000 1.000000 -0.000000
+                                            anchor 0.000000 0.099600 -0.000000
+                                          }
+                                          device [
+                                            RotationalMotor {
+                                              name "wrist_3_joint"
+                                              maxVelocity 3.141592653589793
+                                              minPosition -6.283185307179586
+                                              maxPosition 6.283185307179586
+                                              maxTorque 28.0
+                                            }
+                                            PositionSensor {
+                                              name "wrist_3_joint_sensor"
+                                            }
+                                          ]
+                                          endPoint Solid {
+                                            translation 0.000000 0.099600 -0.000000
+                                            rotation -1.000000 0.000000 0.000000 1.570796
+                                            children [
+                                              Pose {
+                                                translation 0.000000 0.000000 -0.098900
+                                                rotation 1.000000 0.000000 0.000000 1.570796
+                                                children [
+                                                  DEF wrist3_visual CadShape {
+                                                    url "../meshes/ur5e/visual/wrist3.dae"
+                                                  }
+                                                ]
+                                              }
+                                              Solid {
+                                                rotation 0.577350 0.577350 0.577350 2.094395
+                                                children [
+                                                  DEF Polierer_sketch_visual CadShape {
+                                                    url "../meshes/fixture/Polierer_sketch.obj"
+                                                  }
+                                                ]
+                                                name "Polierer_sketch"
+                                                boundingObject DEF Polierer_sketch Mesh {
+                                                  url "../meshes/fixture/Polierer_sketch.obj"
+                                                }
+                                                physics Physics {
+                                                  density -1
+                                                  mass 0.187900
+                                                  centerOfMass [ 0.000000 0.000000 -0.022900 ]
+                                                  inertiaMatrix [
+                                                    9.890410e-05 9.890410e-05 1.321172e-04
+                                                    0.000000e+00 0.000000e+00 0.000000e+00
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                            name "wrist_3_link"
+                                            boundingObject Pose {
+                                              translation 0.000000 0.000000 -0.098900
+                                              rotation 1.000000 0.000000 0.000000 1.570796
+                                              children [
+                                                DEF wrist3 Mesh {
+                                                  url "../meshes/ur5e/collision/wrist3.stl"
+                                                }
+                                              ]
+                                            }
+                                            physics Physics {
+                                              density -1
+                                              mass 0.187900
+                                              centerOfMass [ 0.000000 0.000000 -0.022900 ]
+                                              inertiaMatrix [
+                                                9.890410e-05 9.890410e-05 1.321172e-04
+                                                0.000000e+00 0.000000e+00 0.000000e+00
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ]
+                                      name "wrist_2_link"
+                                      boundingObject Pose {
+                                        translation 0.000000 0.000000 -0.099700
+                                        children [
+                                          DEF wrist2 Mesh {
+                                            url "../meshes/ur5e/collision/wrist2.stl"
+                                          }
+                                        ]
+                                      }
+                                      physics Physics {
+                                        density -1
+                                        mass 1.219000
+                                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                                        inertiaMatrix [
+                                          2.559899e-03 2.559899e-03 2.194200e-03
+                                          0.000000e+00 0.000000e+00 0.000000e+00
+                                        ]
+                                      }
+                                    }
+                                  }
+                                ]
+                                name "wrist_1_link"
+                                boundingObject Pose {
+                                  translation 0.000000 0.000000 -0.127000
+                                  rotation 1.000000 0.000000 0.000000 1.570796
+                                  children [
+                                    DEF wrist1 Mesh {
+                                      url "../meshes/ur5e/collision/wrist1.stl"
+                                    }
+                                  ]
+                                }
+                                physics Physics {
+                                  density -1
+                                  mass 1.219000
+                                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                                  inertiaMatrix [
+                                    2.559899e-03 2.559899e-03 2.194200e-03
+                                    0.000000e+00 0.000000e+00 0.000000e+00
+                                  ]
+                                }
+                              }
+                            }
+                          ]
+                          name "forearm_link"
+                          boundingObject Pose {
+                            translation 0.000000 0.000000 0.007000
+                            rotation 0.577350 -0.577350 -0.577350 2.094395
+                            children [
+                              DEF forearm Mesh {
+                                url "../meshes/ur5e/collision/forearm.stl"
+                              }
+                            ]
+                          }
+                          physics Physics {
+                            density -1
+                            mass 2.275000
+                            centerOfMass [ -0.196100 0.000000 0.007000 ]
+                            inertiaMatrix [
+                              4.095000e-03 3.120936e-02 3.120936e-02
+                              0.000000e+00 1.660275e-18 0.000000e+00
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                    name "upper_arm_link"
+                    boundingObject Pose {
+                      translation 0.000000 0.000000 0.138000
+                      rotation 0.577350 -0.577350 -0.577350 2.094395
+                      children [
+                        DEF upperarm Mesh {
+                          url "../meshes/ur5e/collision/upperarm.stl"
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 8.393000
+                      centerOfMass [ -0.212500 0.000000 0.138000 ]
+                      inertiaMatrix [
+                        1.510740e-02 1.338858e-01 1.338858e-01
+                        0.000000e+00 7.273078e-18 0.000000e+00
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "shoulder_link"
+              boundingObject Pose {
+                rotation 0.000000 0.000000 1.000000 3.141593
+                children [
+                  DEF shoulder Mesh {
+                    url "../meshes/ur5e/collision/shoulder.stl"
+                  }
+                ]
+              }
+              physics Physics {
+                density -1
+                mass 3.700000
+                centerOfMass [ 0.000000 0.000000 0.000000 ]
+                inertiaMatrix [
+                  1.026750e-02 1.026750e-02 6.660000e-03
+                  0.000000e+00 0.000000e+00 0.000000e+00
+                ]
+              }
+            }
+          }
+        ]
+        name "base_link_inertia"
+        boundingObject Pose {
+          rotation 0.000000 0.000000 1.000000 3.141593
+          children [
+            DEF base Mesh {
+              url "../meshes/ur5e/collision/base.stl"
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 4.000000
+          centerOfMass [ 0.000000 0.000000 0.000000 ]
+          inertiaMatrix [
+            4.433332e-03 4.433332e-03 7.200000e-03
+            0.000000e+00 0.000000e+00 0.000000e+00
+          ]
+        }
+      }
+      Solid {
+        translation -0.500000 -0.800000 -0.025000
+        rotation -1.000000 0.000000 0.000000 1.570796
+        children [
+          DEF Schleifvorrichtung_V3_TV_visual CadShape {
+            url "../meshes/fixture/Schleifvorrichtung_V3_TV.obj"
+          }
+        ]
+        name "Schleifvorrichtung_V3_TV"
+        boundingObject DEF Schleifvorrichtung_V3_TV Mesh {
+          url "../meshes/fixture/Schleifvorrichtung_V3_TV.obj"
+        }
+        physics Physics {
+          density -1
+          mass 0.187900
+          centerOfMass [ 0.000000 0.000000 -0.022900 ]
+          inertiaMatrix [
+            9.890410e-05 9.890410e-05 1.321172e-04
+            0.000000e+00 0.000000e+00 0.000000e+00
+          ]
+        }
+      }
+      Solid {
+        translation -0.56 0 -0.025
+        children [                      # Solid's children
+          Transform {
+            scale 0.2 0.2 0.2
+            rotation 1 0 0 1.5708   # 90° (π/2 radians)
+            children [                  # Transform's children
+              Shape {
+                appearance PBRAppearance {
+                  baseColorMap ImageTexture {
+                    url [
+                      "../textures/carbon-fiber_albedo.png"
+                    ]
+                  }
+                  roughnessMap ImageTexture {
+                    url [
+                      "../textures/carbon-fiber_roughness.png"
+                    ]
+                  }
+                  normalMap ImageTexture {
+                    url [
+                      "../textures/carbon-fiber_normal-dx.png"
+                    ]
+                  }
+                  occlusionMap ImageTexture {
+                    url [
+                      "../textures/carbon-fiber_ao.png"
+                    ]
+                  }
+                  baseColor 1 1 1
+                  roughness 1.0
+                  metalness 1.0  # Use scalar value, not metalnessMap
+                }
+                geometry Mesh {
+                  url [
+                    "../meshes/new_fluegel.obj"
+                  ]
+                }
+                castShadows FALSE
+              }
+            ]
+          }
+        ]
+        name "fluegel_object"           # These fields belong to Solid
+        boundingObject Box {                    # Simple box collision
+          size 0.2 0.2 0.2                   # Scaled dimensions (50% of estimated object size)
+        }
+        physics Physics {
+          density -1
+          mass 0.08                     # Mass for 50% scale (0.5³ = 0.125)
+          centerOfMass [ 0 0 0 ]
+          inertiaMatrix [                      # Define inertia matrix to avoid warning
+            0.001 0.001 0.002
+            0 0 0
+          ]
+        }
+      }
+    ]
+    name IS name
+  }
+}

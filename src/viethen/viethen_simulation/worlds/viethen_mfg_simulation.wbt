@@ -1,0 +1,52 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/ThreadMetalPlate.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/WireFence.proto"
+EXTERNPROTO "../protos/Ur5e_with_camera.proto"
+
+WorldInfo {
+  gravity 0
+  basicTimeStep 16
+  contactProperties [
+    ContactProperties {
+      coulombFriction [0.8]
+      bounce 0.1
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.17930489745497327 -0.03627139889131747 0.9831246814982973 3.534236108048075
+  position 3.806395545754909 3.0660288800707454 2.1789974278548923
+}
+TexturedBackground {
+  texture "factory"
+}
+TexturedBackgroundLight {
+  texture "factory"
+}
+RectangleArena {
+  floorSize 6 6
+  floorTileSize 0.6 0.6
+  floorAppearance ThreadMetalPlate {
+  }
+  wallHeight 1
+  wallAppearance WireFence {
+    colorOverride 0 0 0
+    textureTransform TextureTransform {
+      scale 15 15
+    }
+  }
+}
+Ur5e_with_camera {
+  name "ur5e"
+  translation 0 0 0.05
+  controller "<extern>"
+}
+Robot {
+  name "Ros2Supervisor"
+  supervisor TRUE
+  controller "<extern>"
+}

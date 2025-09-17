@@ -1,0 +1,30 @@
+# MoveIt uses this configuration for controller management
+
+# moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+# moveit_simple_controller_manager:
+controller_names:
+  - ur5e_planning_grp_controller
+
+ur5e_planning_grp_controller:
+  type: FollowJointTrajectory
+  action_ns: follow_joint_trajectory
+  default: true
+  joints:
+    - shoulder_pan_joint
+    - shoulder_lift_joint
+    - elbow_joint
+    - wrist_1_joint
+    - wrist_2_joint
+    - wrist_3_joint
+  
+  # Add position control tolerances
+  constraints:
+    goal_time_tolerance: 2.0
+    stopped_velocity_tolerance: 0.02
+    shoulder_pan_joint: {trajectory: 0.05, goal: 0.02}
+    shoulder_lift_joint: {trajectory: 0.05, goal: 0.02}
+    elbow_joint: {trajectory: 0.05, goal: 0.02}
+    wrist_1_joint: {trajectory: 0.03, goal: 0.015}
+    wrist_2_joint: {trajectory: 0.03, goal: 0.015}
+    wrist_3_joint: {trajectory: 0.03, goal: 0.015}

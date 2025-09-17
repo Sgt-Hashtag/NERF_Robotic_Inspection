@@ -1,0 +1,9 @@
+viethen_node:
+  ros__parameters:
+    use_cad_file: true
+    cad_path: spoiler.stl
+    cad_pose: [-0.502, 0.0, 0.054, 0.0, 0.0, 0.0]
+    # x y z translation and then rotation.
+    # First translation and then rotates
+    cad_frame_id: "spoiler_link"
+    cad_parrent_id: "base_link"

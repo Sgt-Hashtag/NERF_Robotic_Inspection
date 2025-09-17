@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="ur5e">
+
+    <!-- Planning Group -->
+    <group name="ur5e_planning_grp">
+        <joint name="virtual_joint"/>
+        <joint name="base_link-base_link_inertia"/>
+        <joint name="shoulder_pan_joint"/>
+        <joint name="shoulder_lift_joint"/>
+        <joint name="elbow_joint"/>
+        <joint name="wrist_1_joint"/>
+        <joint name="wrist_2_joint"/>
+        <joint name="wrist_3_joint"/>
+        <joint name="wrist_3_link-tool0"/>
+    </group>
+    <!-- Named Initial Pose -->
+    <group_state name="initial_pose" group="ur5e_planning_grp">
+        <joint name="elbow_joint" value="1.024"/>
+        <joint name="shoulder_lift_joint" value="-0.8678"/>
+        <joint name="shoulder_pan_joint" value="-2.6035"/>
+        <joint name="wrist_1_joint" value="1.4232"/>
+        <joint name="wrist_2_joint" value="1.7009"/>
+        <joint name="wrist_3_joint" value="0"/>
+    </group_state>
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link"/>
+    <!-- Disable Self-Collisions -->
+    <disable_collisions link1="Spoiler" link2="base_link_inertia" reason="Adjacent"/>
+    <disable_collisions link1="Spoiler" link2="shoulder_link" reason="Never"/>
+    <disable_collisions link1="Schleifvorrichtung_V3_TV" link2="base_link_inertia" reason="Adjacent"/>
+    <disable_collisions link1="Schleifvorrichtung_V3_TV" link2="shoulder_link" reason="Never"/>
+    <disable_collisions link1="base_link_inertia" link2="shoulder_link" reason="Adjacent"/>
+    <disable_collisions link1="forearm_link" link2="upper_arm_link" reason="Adjacent"/>
+    <disable_collisions link1="forearm_link" link2="wrist_1_link" reason="Adjacent"/>
+    <disable_collisions link1="forearm_link" link2="wrist_2_link" reason="Never"/>
+    <disable_collisions link1="shoulder_link" link2="upper_arm_link" reason="Adjacent"/>
+    <disable_collisions link1="wrist_1_link" link2="wrist_2_link" reason="Adjacent"/>
+    <disable_collisions link1="wrist_1_link" link2="wrist_3_link" reason="Never"/>
+    <disable_collisions link1="wrist_2_link" link2="wrist_3_link" reason="Adjacent"/>
+
+</robot>

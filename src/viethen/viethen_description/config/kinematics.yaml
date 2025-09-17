@@ -1,0 +1,2 @@
+ur5e_planning_grp:
+  kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
